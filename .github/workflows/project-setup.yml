@@ -1,0 +1,68 @@
+name: Project Setup
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - '.github/workflows/project-setup.yml'
+
+jobs:
+  setup-project:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Create Project Labels
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const labels = [
+              { name: 'epic', color: '3E4B9E', description: 'Epic level story' },
+              { name: 'feature', color: '0E8A16', description: 'New feature' },
+              { name: 'bug', color: 'D93F0B', description: 'Something needs fixing' },
+              { name: 'documentation', color: '0075CA', description: 'Documentation improvements' },
+              { name: 'enhancement', color: 'A2EEEF', description: 'Enhancement to existing features' },
+              { name: 'api', color: 'FF69B4', description: 'API related changes' },
+              { name: 'frontend', color: '1D76DB', description: 'Frontend related changes' },
+              { name: 'backend', color: '006B75', description: 'Backend related changes' },
+              { name: 'priority-high', color: 'B60205', description: 'High priority item' },
+              { name: 'priority-medium', color: 'D93F0B', description: 'Medium priority item' },
+              { name: 'priority-low', color: 'FBCA04', description: 'Low priority item' }
+            ];
+
+            for (const label of labels) {
+              try {
+                await github.rest.issues.createLabel({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  name: label.name,
+                  color: label.color,
+                  description: label.description
+                });
+              } catch (error) {
+                console.log(`Label ${label.name} might already exist`);
+              }
+            }
+
+      - name: Create Project Milestones
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const milestones = [
+              { title: 'MVP Release', description: 'Minimum Viable Product features' },
+              { title: 'Beta Release', description: 'Beta testing phase features' },
+              { title: 'v1.0 Release', description: 'First stable release features' }
+            ];
+
+            for (const milestone of milestones) {
+              try {
+                await github.rest.issues.createMilestone({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  title: milestone.title,
+                  description: milestone.description
+                });
+              } catch (error) {
+                console.log(`Milestone ${milestone.title} might already exist`);
+              }
+            } 
