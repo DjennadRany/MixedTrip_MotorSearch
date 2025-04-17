@@ -1,0 +1,86 @@
+name: Create Initial Tickets
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/initial-tickets.yml'
+    branches:
+      - main
+
+jobs:
+  create-tickets:
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+      contents: read
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: Create Tickets
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const fs = require('fs');
+            const yaml = require('js-yaml');
+            
+            const ticketsFile = fs.readFileSync('.github/initial-tickets.yml', 'utf8');
+            const tickets = yaml.load(ticketsFile);
+            
+            // Create epics
+            for (const epic of tickets.tickets.epics) {
+              const epicBody = `## Description\n${epic.description}\n\n## Milestones\n${epic.milestones.map(m => `- [ ] ${m}`).join('\n')}`;
+              
+              await github.rest.issues.create({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                title: epic.title,
+                body: epicBody,
+                labels: epic.labels
+              });
+            }
+            
+            // Create features
+            for (const feature of tickets.tickets.features) {
+              const featureBody = `## Description\n${feature.description}\n\n## Tasks\n${feature.tasks.map(t => `- [ ] ${t}`).join('\n')}\n\n## Epic\n${feature.epic}`;
+              
+              await github.rest.issues.create({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                title: feature.title,
+                body: featureBody,
+                labels: feature.labels
+              });
+            }
+            
+            // Create bugs
+            for (const bug of tickets.tickets.bugs) {
+              const bugBody = `## Description\n${bug.description}\n\n## Tasks\n${bug.tasks.map(t => `- [ ] ${t}`).join('\n')}`;
+              
+              await github.rest.issues.create({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                title: bug.title,
+                body: bugBody,
+                labels: bug.labels
+              });
+            }
+            
+            // Create tasks
+            for (const task of tickets.tickets.tasks) {
+              const taskBody = `## Description\n${task.description}\n\n## Subtasks\n${task.subtasks.map(t => `- [ ] ${t}`).join('\n')}\n\n## Epic\n${task.epic}`;
+              
+              await github.rest.issues.create({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                title: task.title,
+                body: taskBody,
+                labels: task.labels
+              });
+            } 
