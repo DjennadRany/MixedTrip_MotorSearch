@@ -1,32 +1,38 @@
 ---
-name: Bug report
-about: Create a report to help us improve
-title: '[BUG] '
-labels: bug
-assignees: ''
+name: CI Build Error
+about: CI/CD Pipeline build job failing
+title: '[BUG] CI/CD Pipeline build job failing'
+labels: bug, ci-cd
+assignees: 'DjennadRany'
 
 ---
 
-**Describe the bug**
-A clear and concise description of what the bug is.
+**Description**
+The CI/CD Pipeline build job is failing in the GitHub Actions workflow.
 
-**To Reproduce**
-Steps to reproduce the behavior:
-1. Go to '...'
-2. Click on '....'
-3. Scroll down to '....'
-4. See error
+**Current Behavior**
+- Build job fails after 2s
+- Error message indicates missing download info for actions/upload-artifact@v3
 
-**Expected behavior**
-A clear and concise description of what you expected to happen.
+**Expected Behavior**
+- Build job should complete successfully
+- Artifacts should be properly uploaded
 
-**Screenshots**
-If applicable, add screenshots to help explain your problem.
+**Steps to Reproduce**
+1. Push changes to main branch
+2. GitHub Actions workflow triggers
+3. Build job fails
 
-**Environment:**
- - OS: [e.g. Windows, macOS]
- - Browser: [e.g. Chrome, Firefox]
- - Version: [e.g. 22]
+**Environment**
+- GitHub Actions runner: ubuntu-latest
+- Node.js version: 18
+- Workflow file: .github/workflows/ci-cd.yml
 
-**Additional context**
-Add any other context about the problem here. 
+**Proposed Solution**
+1. Update CI/CD workflow configuration
+2. Fix artifact upload step
+3. Add proper build directory creation
+4. Ensure all dependencies are installed correctly
+
+**Additional Context**
+This issue is blocking deployments and needs to be resolved with high priority. 
