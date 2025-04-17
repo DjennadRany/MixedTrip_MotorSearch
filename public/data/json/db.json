@@ -1,0 +1,362 @@
+{
+  "config": {
+    "api": {
+      "version": "1.0.0",
+      "name": "MixedTrip API",
+      "description": "API pour la composition dynamique de séjours touristiques au Congo",
+      "baseUrl": "/api"
+    },
+    "defaults": {
+      "pagination": {
+        "limit": 10,
+        "maxLimit": 50
+      },
+      "currency": "EUR",
+      "language": "fr"
+    }
+  },
+  "hotels": [
+    {
+      "id": "hilton_bzv",
+      "name": "Hilton Brazzaville",
+      "description": "Hôtel de luxe au cœur de Brazzaville",
+      "city": "Brazzaville",
+      "country": "Congo",
+      "rating": 4.5,
+      "amenities": [
+        "Piscine",
+        "Spa",
+        "Restaurant",
+        "Salle de sport",
+        "WiFi gratuit",
+        "Service en chambre 24/7"
+      ],
+      "rooms": [
+        {
+          "type": "Chambre Deluxe",
+          "description": "Vue sur la ville, lit king-size",
+          "capacity": 2,
+          "pricePerNight": 200
+        },
+        {
+          "type": "Suite Executive",
+          "description": "Vue sur le fleuve, salon séparé",
+          "capacity": 4,
+          "pricePerNight": 350
+        }
+      ],
+      "contact": {
+        "address": "Avenue Amilcar Cabral, Brazzaville, Congo",
+        "phone": "+242 05 629 9999",
+        "email": "reservations.brazzaville@hilton.com"
+      },
+      "location": {
+        "latitude": -4.2634,
+        "longitude": 15.2429
+      },
+      "images": {
+        "main": "/assets/images/hotels/hilton_bzv.jpg",
+        "thumbnail": "/assets/images/hotels/hilton_bzv_thumb.jpg"
+      }
+    },
+    {
+      "id": "h1",
+      "name": "Grand Hôtel Paris",
+      "city": "Paris",
+      "country": "France",
+      "description": "Hôtel luxueux au cœur de Paris",
+      "rooms": [
+        { "type": "Standard", "pricePerNight": 200 },
+        { "type": "Deluxe", "pricePerNight": 350 }
+      ]
+    },
+    {
+      "id": "h2",
+      "name": "Barcelona Beach Resort",
+      "city": "Barcelona",
+      "country": "Spain",
+      "description": "Resort en bord de mer",
+      "rooms": [
+        { "type": "Standard", "pricePerNight": 180 },
+        { "type": "Suite", "pricePerNight": 400 }
+      ]
+    },
+    {
+      "id": "hotel-1",
+      "name": "Grand Hôtel de Pointe-Noire",
+      "description": "Hôtel luxueux au cœur de Pointe-Noire",
+      "city": "Pointe-Noire",
+      "country": "Congo",
+      "location": {
+        "lat": -4.7889,
+        "lng": 11.8653
+      },
+      "amenities": ["Piscine", "Spa", "Restaurant", "WiFi"],
+      "rating": 4.5,
+      "rooms": [
+        {
+          "type": "Standard",
+          "capacity": 2,
+          "pricePerNight": 150
+        },
+        {
+          "type": "Suite",
+          "capacity": 4,
+          "pricePerNight": 300
+        }
+      ]
+    },
+    {
+      "id": "hotel-bzv-1",
+      "name": "Radisson Blu M'Bamou Palace",
+      "description": "Hôtel de luxe au cœur de Brazzaville",
+      "city": "Brazzaville",
+      "country": "Congo",
+      "rating": 5,
+      "amenities": ["Piscine", "Spa", "WiFi", "Restaurant", "Bar"],
+      "rooms": [
+        {
+          "type": "Standard",
+          "capacity": 2,
+          "pricePerNight": 200
+        },
+        {
+          "type": "Suite",
+          "capacity": 4,
+          "pricePerNight": 400
+        }
+      ]
+    },
+    {
+      "id": "hotel-pnr-1",
+      "name": "Atlantic Palace",
+      "description": "Vue magnifique sur l'océan Atlantique",
+      "city": "Pointe-Noire",
+      "country": "Congo",
+      "rating": 4,
+      "amenities": ["Plage privée", "Piscine", "WiFi", "Restaurant"],
+      "rooms": [
+        {
+          "type": "Vue Mer",
+          "capacity": 2,
+          "pricePerNight": 180
+        },
+        {
+          "type": "Suite Océan",
+          "capacity": 3,
+          "pricePerNight": 300
+        }
+      ]
+    }
+  ],
+  "circuits": [
+    {
+      "id": "kamba_odzala_7j",
+      "name": "Kamba Odzala Discovery - 7 Nuits",
+      "title": "Découverte du Parc National d'Odzala-Kokoua",
+      "description": "Une expérience unique au cœur de la forêt tropicale du Congo",
+      "duration": {
+        "days": 7,
+        "nights": 6
+      },
+      "destination": {
+        "city": "Brazzaville",
+        "country": "Congo",
+        "region": "Cuvette-Ouest"
+      },
+      "highlights": [
+        "Observation des gorilles de plaine",
+        "Safari en forêt tropicale",
+        "Rencontre avec les communautés locales",
+        "Hébergement en lodges écologiques"
+      ],
+      "itinerary": [
+        {
+          "day": 1,
+          "title": "Arrivée à Brazzaville",
+          "description": "Accueil et transfert à l'hôtel"
+        },
+        {
+          "day": 2,
+          "title": "Vol vers Odzala",
+          "description": "Transfert et installation au lodge"
+        }
+      ],
+      "pricing": {
+        "basePrice": 3500,
+        "currency": "EUR",
+        "includes": [
+          "Hébergement en pension complète",
+          "Activités et guides",
+          "Transferts locaux"
+        ]
+      },
+      "images": {
+        "main": "/assets/images/circuits/kamba_odzala.jpg",
+        "thumbnail": "/assets/images/circuits/kamba_odzala_thumb.jpg"
+      }
+    },
+    {
+      "id": "kamba_odzala_4j",
+      "name": "Kamba Odzala Discovery - 4 Nuits",
+      "title": "Escapade à Odzala",
+      "description": "Un court séjour pour découvrir les merveilles d'Odzala",
+      "duration": {
+        "days": 4,
+        "nights": 3
+      },
+      "destination": {
+        "city": "Brazzaville",
+        "country": "Congo",
+        "region": "Cuvette-Ouest"
+      },
+      "highlights": [
+        "Trek d'observation des gorilles",
+        "Balade en forêt",
+        "Observation des oiseaux",
+        "Nuits en lodge de luxe"
+      ],
+      "itinerary": [
+        {
+          "day": 1,
+          "title": "Départ de Brazzaville",
+          "description": "Vol et installation au lodge"
+        },
+        {
+          "day": 2,
+          "title": "Trek gorilles",
+          "description": "Journée d'observation des gorilles"
+        }
+      ],
+      "pricing": {
+        "basePrice": 2500,
+        "currency": "EUR",
+        "includes": [
+          "Hébergement en pension complète",
+          "Activités guidées",
+          "Transferts"
+        ]
+      },
+      "images": {
+        "main": "/assets/images/circuits/kamba_odzala.jpg",
+        "thumbnail": "/assets/images/circuits/kamba_odzala_thumb.jpg"
+      }
+    },
+    {
+      "id": "circuit-1",
+      "title": "Découverte du Congo",
+      "description": "Un circuit exceptionnel à travers le Congo",
+      "destination": {
+        "city": "Pointe-Noire",
+        "country": "Congo"
+      },
+      "duration": {
+        "days": 7,
+        "nights": 6
+      },
+      "highlights": [
+        "Visite de la ville historique",
+        "Excursion dans la réserve naturelle",
+        "Rencontre avec les artisans locaux"
+      ],
+      "itinerary": [
+        {
+          "day": 1,
+          "title": "Arrivée à Pointe-Noire",
+          "description": "Accueil et installation à l'hôtel"
+        }
+      ],
+      "pricing": {
+        "basePrice": 800,
+        "includes": ["Guide", "Transport", "Hébergement"],
+        "excludes": ["Vols", "Repas libres"]
+      }
+    },
+    {
+      "id": "circuit-bzv-1",
+      "title": "Découverte de Brazzaville",
+      "description": "Circuit culturel au cœur de la capitale congolaise",
+      "destination": {
+        "city": "Brazzaville",
+        "country": "Congo"
+      },
+      "duration": {
+        "days": 3,
+        "nights": 2
+      },
+      "highlights": [
+        "Visite du Marché Total",
+        "Basilique Sainte-Anne",
+        "Mémorial Savorgnan de Brazza"
+      ],
+      "pricing": {
+        "basePrice": 300
+      }
+    },
+    {
+      "id": "circuit-pnr-1",
+      "title": "Côte Sauvage de Pointe-Noire",
+      "description": "Découverte des plus belles plages du Congo",
+      "destination": {
+        "city": "Pointe-Noire",
+        "country": "Congo"
+      },
+      "duration": {
+        "days": 4,
+        "nights": 3
+      },
+      "highlights": [
+        "Plage de la Côte Sauvage",
+        "Port autonome",
+        "Gorges de Diosso"
+      ],
+      "pricing": {
+        "basePrice": 400
+      }
+    }
+  ],
+  "cities": [
+    {
+      "id": "PAR",
+      "name": "Paris",
+      "country": "France",
+      "code": "PAR",
+      "type": "departure",
+      "location": {
+        "lat": 48.8566,
+        "lng": 2.3522
+      }
+    },
+    {
+      "id": "BZV",
+      "name": "Brazzaville",
+      "country": "Congo",
+      "code": "BZV",
+      "type": "destination",
+      "location": {
+        "lat": -4.2634,
+        "lng": 15.2429
+      }
+    },
+    {
+      "id": "PNR",
+      "name": "Pointe-Noire",
+      "country": "Congo",
+      "code": "PNR",
+      "type": "destination",
+      "location": {
+        "lat": -4.7889,
+        "lng": 11.8653
+      }
+    },
+    { "name": "Marseille", "country": "France", "code": "MRS" },
+    { "name": "Lyon", "country": "France", "code": "LYS" },
+    { "name": "Bordeaux", "country": "France", "code": "BOD" },
+    { "name": "Barcelona", "country": "Spain", "code": "BCN" },
+    { "name": "Madrid", "country": "Spain", "code": "MAD" },
+    { "name": "London", "country": "United Kingdom", "code": "LON" },
+    { "name": "Berlin", "country": "Germany", "code": "BER" },
+    { "name": "Rome", "country": "Italy", "code": "ROM" },
+    { "name": "Milan", "country": "Italy", "code": "MIL" }
+  ]
+} 

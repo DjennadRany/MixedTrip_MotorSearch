@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recherche de Vols - MixedTrip</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        header {
+            width: 100%;
+            background-color: #003580;
+            padding: 10px 0;
+            text-align: center;
+        }
+        header img {
+            height: 50px;
+        }
+        .search-container {
+            background-color: #ffffff;
+            padding: 20px;
+            margin-top: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            width: 90%;
+            max-width: 600px;
+        }
+        .search-container h2 {
+            margin-top: 0;
+            color: #003580;
+        }
+        .search-container input, .search-container button {
+            width: calc(100% - 22px);
+            padding: 10px;
+            margin-top: 10px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+        .search-container button {
+            background-color: #febb02;
+            color: #003580;
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+        }
+        .search-container button:hover {
+            background-color: #e1a800;
+        }
+        .results-container {
+            margin-top: 20px;
+            width: 90%;
+            max-width: 600px;
+        }
+        .flight-result {
+            background-color: #ffffff;
+            padding: 15px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        .flight-result h3 {
+            margin: 0 0 10px 0;
+            color: #003580;
+        }
+        .flight-result p {
+            margin: 5px 0;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img src="MixedTrip-RS.jpg" alt="MixedTrip Logo">
+    </header>
+    <div class="search-container">
+        <h2>Rechercher un vol</h2>
+        <input type="text" id="departure" placeholder="Aéroport de départ (code IATA)">
+        <input type="text" id="arrival" placeholder="Aéroport d'arrivée (code IATA)">
+        <input type="date" id="date">
+        <button onclick="searchFlights()">Rechercher</button>
+    </div>
+    <div class="results-container" id="results"></div>
+
+    <script>
+        async function searchFlights() {
+            const departure = document.getElementById('departure').value.toUpperCase();
+            const arrival = document.getElementById('arrival').value.toUpperCase();
+            const date = document.getElementById('date').value;
+
+            if (!departure || !arrival || !date) {
+                alert('Veuillez remplir tous les champs.');
+                return;
+            }
+
+            const apiKey = 'VOTRE_CLE_API';
+            const url = `http://api.aviationstack.com/v1/flights?access_key=${apiKey}&dep_iata=${departure}&arr_iata=${arrival}&flight_date=${date}`;
+
+            try {
+                const response = await fetch(url);
+                const data = await response.json();
+
+                if (data.error) {
+                    alert('Erreur: ' + data.error.info);
+                    return;
+                }
+
+                displayResults(data.data);
+            } catch (error) {
+                console.error('Erreur lors de la récupération des données:', error);
+                alert('Une erreur est survenue lors de la récupération des données.');
+            }
+        }
+
+        function displayResults(flights) {
+            const resultsContainer = document.getElementById('results');
+            resultsContainer.innerHTML = '';
+
+            if (flights.length === 0) {
+                resultsContainer.innerHTML = '<p>Aucun vol trouvé pour ces critères.</p>';
+                return;
+            }
+
+            flights.forEach(flight => {
+                const flightElement = document.createElement('div');
+                flightElement.className = 'flight-result';
+                flightElement.innerHTML = `
+                    <h3>Vol ${flight.flight.iata || 'N/A'}</h3>
+                    <p><strong>Compagnie aérienne:</strong> ${flight.airline.name || 'N/A'}</p>
+                    <p><strong>Départ:</strong> ${flight.departure.airport || 'N/A'} (${flight.departure.iata || 'N/A'}) à ${flight.departure.scheduled || 'N/A'}</p>
+                    <p><strong>Arrivée:</strong> ${flight.arrival.airport || 'N/A'} (${flight.arrival.iata || 'N/A'}) à ${flight.arrival.scheduled || 'N/A'}</p>
+                    <p><strong>Statut:</strong> ${flight.flight_status || 'N/A'}</p>
+                `;
+                resultsContainer.appendChild(flightElement);
+            });
+        }
+    </script>
+</body>
+</html>

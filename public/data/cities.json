@@ -1,0 +1,64 @@
+{
+  "cities": [
+    {
+      "name": "Paris",
+      "code": "PAR",
+      "country": "France",
+      "type": "departure"
+    },
+    {
+      "name": "Brazzaville",
+      "code": "BZV",
+      "country": "Congo",
+      "type": "destination"
+    },
+    {
+      "name": "Lyon",
+      "code": "LYS",
+      "country": "France",
+      "type": "departure"
+    },
+    {
+      "name": "Marseille",
+      "code": "MRS",
+      "country": "France",
+      "type": "departure"
+    },
+    {
+      "name": "Pointe-Noire",
+      "code": "PNR",
+      "country": "Congo",
+      "type": "destination"
+    },
+    {
+      "name": "Kinshasa",
+      "code": "FIH",
+      "country": "RDC",
+      "type": "destination"
+    },
+    {
+      "name": "Douala",
+      "code": "DLA",
+      "country": "Cameroun",
+      "type": "destination"
+    },
+    {
+      "name": "Yaoundé",
+      "code": "NSI",
+      "country": "Cameroun",
+      "type": "destination"
+    },
+    {
+      "name": "Nice",
+      "code": "NCE",
+      "country": "France",
+      "type": "departure"
+    },
+    {
+      "name": "Toulouse",
+      "code": "TLS",
+      "country": "France",
+      "type": "departure"
+    }
+  ]
+} 

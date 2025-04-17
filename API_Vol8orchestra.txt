@@ -1,0 +1,128 @@
+Skip to main content
+Getting Started
+Releases notes
+Login
+Air Shopping
+Service List
+Seat Availability
+Offer Price
+Order Create
+Order Retrieve
+Order Reshop
+Order Cancel
+Order Change
+Frequently Asked Questions (FAQ)
+This site uses Just the Docs, a documentation theme for Jekyll.
+Search Travelsoft NDC
+ChatBot
+Travelsoft
+Orchestra
+Getting Started
+This documentation is designed to be used as a base to integrate the Travelsoft NDC API in a third-party system. The Travelsoft NDC API is based on SOAP Web Service technology, but it’s also available as REST Web Services. The current NDC version exposed is 19.2.
+
+Table of contents
+Steps for Travelsoft NDC API Integration
+Environments
+Current available web operations
+Authentication
+Control header
+Endpoints
+SOAP endpoint
+REST endpoints
+Postman Collection
+Shopping flow
+Servicing flows
+Error management
+All samples
+Steps for Travelsoft NDC API Integration
+give IP addresses of your system to Travelsoft to update firewall of WS server
+build a WS client by using provided WSDL + XSD files
+get a test user from Travelsoft to make test calls
+integrate WS operations in your system (by following recommended flows)
+If you have any questions, ask your contact at Travelsoft or contacts@travelsoft.fr if you don’t yet have a referent contact.
+
+Environments
+There are two environments:
+
+Test: (contact us)
+Production: (contact us)
+WSDL and XSD files can be downloaded directly here.
+
+Current available web operations
+login → get an access token
+airShopping → search flights
+serviceList → get ancillaries
+seatAvailability → get seat map
+offerPrice → quote an offer selection
+orderCreate → make a booking
+orderRetrieve → get a booking
+orderChange → issue tickets
+orderReshop → get cancel fee
+orderCancel → cancel a booking
+Authentication
+To avoid to send username/password for each NDC request, a login method allows to authenticate a user and returns an access token in response to be used in all the NDC methods (airShopping, serviceList, etc). This login operation must be done once for a user, and the token returned can be used until the expiration date (provided in the login response with the token). Usually an access token is valid during one hour.
+
+Control header
+A control node can be added in the SOAP header of each NDC request. This node contains extra data to control request:
+
+Provider: code of provider to request (put SWITCHALLINONE to receive all available companies)
+ApiVersion: version of Orchestra NDC API to use (allows to maintain backward compatibility if necessary)
+:information_source: The Orchestra NDC API is designed as a gateway, so a provider code is mandatory in request by using control header to indicate the provider to request. The provider can be an airline system, an aggregator, another gateway API, etc. Only one provider code can be set for each request.
+
+Control Header Sample
+Endpoints
+Depending on your preferences, the NDC API can be consumed as SOAP WS or REST WS. In both cases, the Content-Type header must be text/xml;charset=UTF-8
+
+Also, in both cases, the Accept-Encoding header with gzip value should be sent to enable GZIP compression to reduce response size and optimize transmission.
+
+SOAP endpoint
+Note: NDC messages are contained in SOAP envelope for request and response. Control header must be defined in the SOAP header as XML element.
+
+https://________/ndc/ws/soap/19.2/OrchestraNDCService
+SOAP request sample
+SOAP response sample
+REST endpoints
+Note: NDC messages can be sent directly (without envelope, not like SOAP endpoint). Control header must be defined in the HTTP headers (Orx-Control-Provider, Orx-Control-ApiVersion, Orx-Control-EnvironmentTarget, etc).
+
+https://________/ndc/ws/rest/19.2/Login
+https://________/ndc/ws/rest/19.2/AirShopping
+https://________/ndc/ws/rest/19.2/ServiceList
+https://________/ndc/ws/rest/19.2/SeatAvailability
+https://________/ndc/ws/rest/19.2/OfferPrice
+https://________/ndc/ws/rest/19.2/OrderCreate
+https://________/ndc/ws/rest/19.2/OrderRetrieve
+https://________/ndc/ws/rest/19.2/OrderReshop
+https://________/ndc/ws/rest/19.2/OrderChange
+https://________/ndc/ws/rest/19.2/OrderCancel
+REST request sample
+REST response sample
+Postman Collection
+You can dowload the postman collection to test during your integration.
+
+Shopping flow
+airShopping (→ offerPrice) → serviceList → seatAvailability → offerPrice → orderCreate
+
+Note: the airShopping transaction initiates a session which is maintained on Travelsoft side by using the ShoppingResponseID as session ID.
+
+Booking flow
+
+Servicing flows
+Get order data for refresh:
+Retrieve flow
+
+Ticket issue:
+Ticket issue flow
+
+Cancellation:
+Cancel flow
+
+Error management
+Always in NDC responses (see an example below), except if the request is malformed, a SOAP fault will be returned.
+
+AirShoppingRS - Error Example
+All samples
+Download all message samples here.
+
+Back to top
+
+Copyright © 2024 Travelsoft.
