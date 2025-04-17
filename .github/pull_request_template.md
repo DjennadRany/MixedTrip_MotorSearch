@@ -1,26 +1,33 @@
 ## Description
-Please include a summary of the change and which issue is fixed. Please also include relevant motivation and context.
+Fix CI/CD Pipeline build job failures and improve workflow configuration
 
-Fixes # (issue)
+Fixes #[Issue number]
 
 ## Type of change
-Please delete options that are not relevant.
-
-- [ ] Bug fix (non-breaking change which fixes an issue)
+- [x] Bug fix (non-breaking change which fixes an issue)
 - [ ] New feature (non-breaking change which adds functionality)
 - [ ] Breaking change (fix or feature that would cause existing functionality to not work as expected)
-- [ ] This change requires a documentation update
+- [x] This change requires a documentation update
+
+## Changes Made
+1. Updated CI/CD workflow configuration
+2. Fixed artifact upload/download steps
+3. Added proper build directory preparation
+4. Improved error handling in npm install steps
+5. Added workspace verification steps
 
 ## How Has This Been Tested?
-Please describe the tests that you ran to verify your changes.
+- [x] Verified workflow syntax
+- [x] Tested build steps locally
+- [x] Checked artifact creation and upload
 
-- [ ] Test A
-- [ ] Test B
+## Checklist
+- [x] My code follows the style guidelines of this project
+- [x] I have performed a self-review of my own code
+- [x] I have commented my code, particularly in hard-to-understand areas
+- [x] I have made corresponding changes to the documentation
+- [x] My changes generate no new warnings
+- [x] Any dependent changes have been merged and published in downstream modules
 
-## Checklist:
-- [ ] My code follows the style guidelines of this project
-- [ ] I have performed a self-review of my own code
-- [ ] I have commented my code, particularly in hard-to-understand areas
-- [ ] I have made corresponding changes to the documentation
-- [ ] My changes generate no new warnings
-- [ ] Any dependent changes have been merged and published in downstream modules 
+## Additional Notes
+This PR addresses the CI/CD pipeline failures and implements proper artifact handling. The changes follow GitHub Actions best practices and improve the overall reliability of our deployment process. 
