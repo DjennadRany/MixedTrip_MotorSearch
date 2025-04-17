@@ -10,39 +10,52 @@ permissions:
   pages: write
   id-token: write
 
+# Allow only one concurrent deployment
 concurrency:
   group: "pages"
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 jobs:
+  # Build job
   build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
       
-      - name: List files before build
-        run: |
-          pwd
-          ls -la
-      
       - name: Setup Pages
         uses: actions/configure-pages@v4
       
-      - name: Copy public to build
+      - name: Verify directory structure
         run: |
+          echo "Current directory:"
+          pwd
+          echo "\nDirectory contents:"
+          ls -la
+          echo "\nPublic directory contents:"
+          ls -la public/
+      
+      - name: Create build directory
+        run: |
+          rm -rf build
           mkdir -p build
           cp -r public/* build/
-      
-      - name: List files after build
-        run: |
-          echo "Content of build directory:"
+          echo "\nBuild directory contents:"
           ls -la build/
+      
+      - name: Fix file permissions
+        run: |
+          chmod -R 755 build
+          find build -type f -exec chmod 644 {} \;
+      
+      - name: Create .nojekyll file
+        run: touch build/.nojekyll
       
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: 'build'
+          name: github-pages
+          path: build
 
   deploy:
     environment:
@@ -53,4 +66,6 @@ jobs:
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v4 
+        uses: actions/deploy-pages@v4
+        with:
+          artifact_name: github-pages 
