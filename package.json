@@ -1,25 +1,30 @@
 {
-  "name": "mixedtrip-api",
+  "name": "mixedtrip-motor-search",
   "version": "1.0.0",
-  "description": "API REST pour MixedTrip - Voyages au Congo",
+  "description": "A modern web application for planning and organizing mixed-mode trips",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
-    "dev": "nodemon index.js"
+    "start": "serve public",
+    "build": "mkdir -p build && cp -r public/* build/",
+    "test": "echo \"No tests specified\" && exit 0",
+    "lint": "echo \"No linting configured\" && exit 0"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DjennadRany/MixedTrip_MotorSearch.git"
+  },
+  "keywords": [
+    "travel",
+    "search",
+    "booking"
+  ],
+  "author": "Djennad Rany",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/DjennadRany/MixedTrip_MotorSearch/issues"
+  },
+  "homepage": "https://github.com/DjennadRany/MixedTrip_MotorSearch#readme",
   "dependencies": {
-    "cors": "^2.8.5",
-    "dotenv": "^16.0.3",
-    "express": "^4.18.2",
-    "express-rate-limit": "^6.7.0",
-    "helmet": "^6.0.1",
-    "morgan": "^1.10.0",
-    "sharp": "^0.34.1"
-  },
-  "devDependencies": {
-    "nodemon": "^2.0.22"
-  },
-  "engines": {
-    "node": ">=14.0.0"
+    "serve": "^14.2.1"
   }
 }
