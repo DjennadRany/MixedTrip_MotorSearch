@@ -1,0 +1,72 @@
+epics:
+  - title: "API Development and Integration"
+    description: |
+      Develop and integrate the core API services for MixedTrip, including authentication, 
+      search functionality, and booking management.
+    milestone: "Q2 2024"
+    labels: ["epic", "backend"]
+    
+  - title: "User Interface Development"
+    description: |
+      Create a modern, responsive, and accessible user interface for MixedTrip,
+      focusing on search, filtering, and booking workflows.
+    milestone: "Q2 2024"
+    labels: ["epic", "frontend"]
+
+features:
+  - title: "Vehicle Search Implementation"
+    description: |
+      Implement comprehensive vehicle search functionality with filters for type,
+      price range, location, and availability.
+    epic: "API Development and Integration"
+    labels: ["feature", "backend", "search"]
+    tasks:
+      - "Set up search API endpoints"
+      - "Implement filter logic"
+      - "Add sorting capabilities"
+      - "Create search result caching"
+
+  - title: "Search Results UI Component"
+    description: |
+      Create a responsive and interactive search results component with filtering,
+      sorting, and pagination capabilities.
+    epic: "User Interface Development"
+    labels: ["feature", "frontend", "ui"]
+    tasks:
+      - "Design search results layout"
+      - "Implement filter components"
+      - "Add sorting functionality"
+      - "Create pagination component"
+
+bugs:
+  - title: "Fix TypeScript Configuration"
+    description: |
+      Resolve TypeScript configuration issues and ensure proper type checking
+      across the project.
+    priority: high
+    labels: ["bug", "typescript"]
+    tasks:
+      - "Update tsconfig.json"
+      - "Install missing type definitions"
+      - "Fix type errors in existing code"
+
+tasks:
+  - title: "Set up API Documentation"
+    description: |
+      Create comprehensive API documentation using Swagger/OpenAPI specification.
+    epic: "API Development and Integration"
+    labels: ["task", "documentation"]
+    subtasks:
+      - "Set up Swagger UI"
+      - "Document all API endpoints"
+      - "Add request/response examples"
+
+  - title: "Implement CI/CD Pipeline"
+    description: |
+      Set up and configure CI/CD pipeline for automated testing, building,
+      and deployment.
+    labels: ["task", "devops"]
+    subtasks:
+      - "Configure GitHub Actions workflows"
+      - "Set up automated testing"
+      - "Configure deployment process" 
