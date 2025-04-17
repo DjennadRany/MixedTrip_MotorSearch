@@ -1,0 +1,94 @@
+name: MixedTrip Development
+type: organization
+
+# Colonnes du tableau Kanban
+columns:
+  - name: Backlog
+    description: Tasks that are not yet ready for development
+    
+  - name: To Do
+    description: Tasks that are ready to be worked on
+    
+  - name: In Progress
+    description: Tasks currently being worked on
+    max_items: 3 # Limite WIP (Work in Progress)
+    
+  - name: Review
+    description: Tasks that need review or testing
+    max_items: 5
+    
+  - name: Done
+    description: Completed tasks
+
+# Labels automatiques
+labels:
+  - name: bug
+    color: '#d73a4a'
+    description: Something isn't working
+    
+  - name: feature
+    color: '#0e8a16'
+    description: New feature or request
+    
+  - name: documentation
+    color: '#0075ca'
+    description: Documentation improvements
+    
+  - name: priority-high
+    color: '#b60205'
+    description: High priority item
+    
+  - name: priority-medium
+    color: '#d93f0b'
+    description: Medium priority item
+    
+  - name: priority-low
+    color: '#fbca04'
+    description: Low priority item
+
+# Automatisation
+automation:
+  # Déplacement automatique des PR
+  pull_requests:
+    - when: opened
+      set_column: Review
+      
+    - when: merged
+      set_column: Done
+      
+  # Règles pour les issues
+  issues:
+    - when: opened
+      set_column: Backlog
+      
+    - when: assigned
+      set_column: To Do
+      
+    - when: labeled
+      label: priority-high
+      set_column: To Do
+
+# Intégration CI/CD
+ci_integration:
+  required_checks:
+    - build
+    - test
+    - lint
+    
+  auto_merge:
+    enabled: true
+    require_reviews: 1
+    delete_branch: true
+
+# Règles de revue
+review_rules:
+  required_reviewers: 1
+  dismiss_stale_reviews: true
+  require_code_owner_reviews: true
+
+# Métriques
+metrics:
+  cycle_time: true
+  lead_time: true
+  throughput: true
+  wip_limits: true 
