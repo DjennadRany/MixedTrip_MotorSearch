@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
   pages: write
   id-token: write
 
@@ -21,25 +21,28 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
       
+      - name: List files before build
+        run: |
+          pwd
+          ls -la
+      
       - name: Setup Pages
         uses: actions/configure-pages@v4
       
-      - name: Build with Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '18'
-          cache: 'npm'
+      - name: Copy public to build
+        run: |
+          mkdir -p build
+          cp -r public/* build/
       
-      - name: Install dependencies
-        run: npm ci || npm install
-      
-      - name: Build
-        run: npm run build || true
+      - name: List files after build
+        run: |
+          echo "Content of build directory:"
+          ls -la build/
       
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: './build'
+          path: 'build'
 
   deploy:
     environment:
